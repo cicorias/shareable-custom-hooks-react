@@ -14,13 +14,17 @@ const { test, expect } = require('../utils')
  * @returns {[{value: number}, (newValue: number) => void]} an array containing the value and a function to update the value
  */
 function useCount(initialValue) {
-  /**
-   *
-   *
-   * Write your code here in this function block
-   *
-   *
-   */
+
+    return  [{
+
+      setCount : function (newValue) {
+        value = newValue
+      },
+
+      count: { value: [0]}
+
+    }]
+
 }
 
 test('useCount - returns an array with a value and a function to update the value', () => {
