@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { Form, Label, Textarea, Button, Title } from './Feedback.styles'
 
-export function FeedbackFunctionComponent() {
+
+export function FeedbackEffectComponent() {
   const [text, setText] = useState('')
 
-  // componentDidMount() {
-  //   // Get placeholder text
-  //   fetch('http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
-  //     .then(response => response.json())
-  //     .then(data =>
-  //       this.setState({
-  //         text: data.starWarsQuote
-  //       })
-  //     )
-  // }
+  React.useEffect(() => {
+    async function getStarsWarsQuote() {
+      // Get placeholder text
+      const response = await fetch('http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
+      const data = await response.json()
+      const quote = data.starWarsQuote
+      setText(quote)
+    }
+    getStarsWarsQuote()
+  }, [])
+
 
   // Handle form submission
   function handleSubmit(e) {
@@ -29,7 +31,7 @@ export function FeedbackFunctionComponent() {
 
   return (
     <Form onSubmit={e => handleSubmit(e)}>
-      <Title>Function Example</Title>
+      <Title>Effect Example</Title>
       <Label>
         Have feedback for our team? <br /> Let us know here 👇
           <Textarea
